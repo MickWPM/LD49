@@ -50,6 +50,9 @@ public class MouseHandler : MonoBehaviour
     }
 
     public Building buildingToBePlaced;
+    public Building LumberYard;
+    public Building House;
+
     bool CanBuildingBePlacedOnResource(RaycastHit raycastHit, out Vector3 placementLocation, out Resource placementResource)
     {
         placementResource = null;
@@ -59,6 +62,7 @@ public class MouseHandler : MonoBehaviour
         Resource resource = raycastHit.collider.gameObject.GetComponent<Resource>();
         if (resource != null)
         {
+            buildingToBePlaced = LumberYard;
             //check if we can place here then return
             placementLocation = resource.transform.position;
             Debug.Log("We should tell the resource it is being used here - remove resource or update graphics. Currently just destroying the resource if building placed");
@@ -72,6 +76,7 @@ public class MouseHandler : MonoBehaviour
             return false;
         }
 
+        buildingToBePlaced = House;
         Island island = raycastHit.collider.gameObject.GetComponentInParent<Island>();
         if (island != null)
         {

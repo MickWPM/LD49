@@ -9,6 +9,7 @@ public class Island : MonoBehaviour
     private void Awake()
     {
         buildings = new List<Building>();
+        targetRotation = transform.rotation.eulerAngles;
     }
 
     public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos)
@@ -32,6 +33,18 @@ public class Island : MonoBehaviour
     private void Update()
     {
         UpdateWeightVector();
+        AlignIsland();
+    }
+
+    Vector3 targetRotation;
+    void AlignIsland()
+    {
+        //Deliberately use the wrong lerp to get a nice ease out!
+        //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, targetRotation, Time.deltaTime));
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), Time.deltaTime);
+        
+        //transform.rotation = Quaternion.Euler(targetRotation);
     }
 
     public Vector3 averageSummedWeightVector;
@@ -55,8 +68,9 @@ public class Island : MonoBehaviour
         //Store sign for x and z
         float xRot = Mathf.Lerp(0, zTipDegrees, Mathf.Abs(averageSummedWeightVector.z) / zTipDistance);
         float zRot = -Mathf.Lerp(0, xTipDegrees, Mathf.Abs(averageSummedWeightVector.x) / xTipDistance);
-        transform.rotation = Quaternion.Euler(new Vector3(Mathf.Sign(averageSummedWeightVector.z) * xRot, 0, Mathf.Sign(averageSummedWeightVector.x) * zRot));
-        transform.position = new Vector3(0, totalWeight/200f, 0);
+        targetRotation = new Vector3(Mathf.Sign(averageSummedWeightVector.z) * xRot, 0, Mathf.Sign(averageSummedWeightVector.x) * zRot);
+
+        transform.position = new Vector3(0, -totalWeight/200f, 0);
     }
 
 
