@@ -61,6 +61,7 @@ MonoBehaviour:
   AllowedResoucePlacements: 
   weight: 10
   effectiveWeight: 0
+  locationPlacement: 1
 --- !u!1 &4623486746996422074
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6478536213147159724, guid: 1a5e0db41d88a854f915ce0408bf8ae7, type: 3}
+  - {fileID: 2100000, guid: 8d2cf7ea8f7aec94d8722654ade77cd7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

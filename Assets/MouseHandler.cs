@@ -8,6 +8,8 @@ public class MouseHandler : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(1)) mouseState = MouseState.DEFAULT;
+
         switch (mouseState)
         {
             case MouseState.DEFAULT:
@@ -30,16 +32,14 @@ public class MouseHandler : MonoBehaviour
         if (Physics.Raycast(ray, out raycastHit, 1000f)) //Add layer mask 
         {
             Vector3 placementLoc;
-            Resource placementResource;
+            Resource placementResource = null;
             bool clearGround = CanBuildingBePlacedOnResource(raycastHit, out placementLoc, out placementResource);
             //Can we place building
             if(clearGround)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    TryPlaceBuilding(placementLoc); //We can try and pass the normal in here if we need differing rotations but for now, just use local identity
-                    if (placementResource != null)
-                        Destroy(placementResource.gameObject);
+                    TryPlaceBuilding(placementLoc, placementResource); //We can try and pass the normal in here if we need differing rotations but for now, just use local identity
                 }
             }
         }
@@ -49,12 +49,34 @@ public class MouseHandler : MonoBehaviour
         }
     }
 
+    public void SetBuildingHouse()
+    {
+        SetBuildingToBePlaced(House);
+    }
+    public void SetBuildingLumberyard()
+    {
+        SetBuildingToBePlaced(LumberYard);
+    }
+
+    public void SetBuildingFishingHut()
+    {
+        SetBuildingToBePlaced(FishingHut);
+    }
+
+    void SetBuildingToBePlaced(Building b)
+    {
+        mouseState = MouseState.BUILDING_PLACEMENT;
+        buildingToBePlaced = b;
+    }
+
     public Building buildingToBePlaced;
     public Building LumberYard;
     public Building House;
+    public Building FishingHut;
 
     bool CanBuildingBePlacedOnResource(RaycastHit raycastHit, out Vector3 placementLocation, out Resource placementResource)
     {
+        hoverObject = raycastHit.collider.gameObject;
         placementResource = null;
         placementLocation = Vector3.zero;
         //eg. maybe only woodcutters can be placed in forests
@@ -62,7 +84,7 @@ public class MouseHandler : MonoBehaviour
         Resource resource = raycastHit.collider.gameObject.GetComponent<Resource>();
         if (resource != null)
         {
-            buildingToBePlaced = LumberYard;
+            if (buildingToBePlaced.AllowedResoucePlacements.Contains(resource.ResourceType) == false) return false;
             //check if we can place here then return
             placementLocation = resource.transform.position;
             Debug.Log("We should tell the resource it is being used here - remove resource or update graphics. Currently just destroying the resource if building placed");
@@ -70,15 +92,24 @@ public class MouseHandler : MonoBehaviour
             return true;
         }
 
+        if (buildingToBePlaced.AllowedResoucePlacements.Count > 0 && buildingToBePlaced.AllowedResoucePlacements.Contains(ResourceType.NONE) == false) return false;
+
         Building building = raycastHit.collider.gameObject.GetComponent<Building>();
         if (building != null)
         {
             return false;
         }
 
-        buildingToBePlaced = House;
         Island island = raycastHit.collider.gameObject.GetComponentInParent<Island>();
-        if (island != null)
+        if (island != null && (buildingToBePlaced.locationPlacement == Building.IslandLocationPlacement.ALL || buildingToBePlaced.locationPlacement == Building.IslandLocationPlacement.GRASS))
+        {
+            //We can place stuff on the island
+            placementLocation = raycastHit.point;
+            return true;
+        }
+
+        Beach beach = raycastHit.collider.gameObject.GetComponentInParent<Beach>();
+        if (beach != null && (buildingToBePlaced.locationPlacement == Building.IslandLocationPlacement.ALL || buildingToBePlaced.locationPlacement == Building.IslandLocationPlacement.BEACH))
         {
             //We can place stuff on the island
             placementLocation = raycastHit.point;
@@ -87,11 +118,12 @@ public class MouseHandler : MonoBehaviour
 
         return false;
     }
+    public GameObject hoverObject;
 
     public Island island;
-    void TryPlaceBuilding(Vector3 pos)//, Vector3 rotation)
+    void TryPlaceBuilding(Vector3 pos, Resource resource)
     {
-        island.TryPlaceBuilding(buildingToBePlaced, pos);
+        island.TryPlaceBuilding(buildingToBePlaced, pos, resource);
     }
 
     void DefaultMouseStateUpdate()
@@ -100,6 +132,12 @@ public class MouseHandler : MonoBehaviour
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit, 1000f)) //Add layer mask 
         {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Building b = raycastHit.collider.gameObject.GetComponent<Building>();
+                if (b != null)
+                    b.DeleteBuilding();
+            }
         }
         else
         {

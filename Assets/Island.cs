@@ -12,7 +12,7 @@ public class Island : MonoBehaviour
         targetRotation = transform.rotation.eulerAngles;
     }
 
-    public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos)
+    public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos, Resource r = null)
     {
         Building b = Instantiate(buildingToBePlaced);
         Transform t = b.transform;
@@ -24,6 +24,8 @@ public class Island : MonoBehaviour
         buildings.Add(b);
         float midDist = Vector3.Magnitude(new Vector3(b.transform.position.x, 0, b.transform.position.z));
         b.effectiveWeight = b.weight * midDist;// * buildings.Count * buildings.Count;
+        if (r != null) b.PlacedOnResource(r);
+
         totalWeight += b.weight;
 
         return true;
@@ -34,6 +36,42 @@ public class Island : MonoBehaviour
     {
         UpdateWeightVector();
         AlignIsland();
+        CheckBuildings();
+        TickBuildings();
+    }
+
+    void TickBuildings()
+    {
+        foreach (var b in buildings)
+        {
+            b.Tick(Time.deltaTime);
+        }
+    }
+
+    void CheckBuildings()
+    {
+        List<Building> underwaterBuildings = new List<Building>();
+        for (int i = buildings.Count - 1; i >= 0; i--)
+        {
+            Building b = buildings[i];
+            if (b.transform.position.y < 0)
+            {
+                //underwater
+                underwaterBuildings.Add(b);
+            }
+        }
+
+        foreach (var b in underwaterBuildings)
+        {
+            b.BuildingUnderwater();
+        }
+    }
+
+    public void RemoveBuilding(Building b)
+    {
+        buildings.Remove(b);
+        totalWeight -= b.weight;
+        Destroy(b.gameObject);
     }
 
     Vector3 targetRotation;
@@ -43,7 +81,7 @@ public class Island : MonoBehaviour
         //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, targetRotation, Time.deltaTime));
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), Time.deltaTime);
-        
+
         //transform.rotation = Quaternion.Euler(targetRotation);
     }
 
@@ -70,23 +108,6 @@ public class Island : MonoBehaviour
         float zRot = -Mathf.Lerp(0, xTipDegrees, Mathf.Abs(averageSummedWeightVector.x) / xTipDistance);
         targetRotation = new Vector3(Mathf.Sign(averageSummedWeightVector.z) * xRot, 0, Mathf.Sign(averageSummedWeightVector.x) * zRot);
 
-        transform.position = new Vector3(0, -totalWeight/200f, 0);
-    }
-
-
-    public float gizmoScaleReduction = 1000f;
-    private void OnDrawGizmos()
-    {
-        Color c = Gizmos.color;
-        foreach (var b in buildings)
-        {
-            Gizmos.color = Color.white;
-            Gizmos.DrawLine(b.transform.position, b.transform.position + Vector3.down * b.effectiveWeight  / gizmoScaleReduction);
-        }
-        Gizmos.color = Color.black;
-        
-        Gizmos.DrawLine(new Vector3(averageSummedWeightVector.x, 0, averageSummedWeightVector.z), new Vector3(averageSummedWeightVector.x, 100, averageSummedWeightVector.z));
-
-        Gizmos.color = c;
+        transform.position = new Vector3(0, -totalWeight / 200f, 0);
     }
 }
