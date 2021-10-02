@@ -43,10 +43,12 @@ public class Building : MonoBehaviour
     }
 
     Resource thisResource;
+    public bool setResourceInactiveOnPlacement = true;
     public void PlacedOnResource(Resource r)
     {
         thisResource = r;
-        thisResource.gameObject.SetActive(false);
+        if (setResourceInactiveOnPlacement)
+            thisResource.gameObject.SetActive(false);
     }
 
     public void DeleteBuilding()

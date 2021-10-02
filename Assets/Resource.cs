@@ -10,5 +10,6 @@ public class Resource : MonoBehaviour
 public enum ResourceType
 {
     NONE,
-    WOOD
+    WOOD,
+    STONE
 }

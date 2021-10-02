@@ -95,6 +95,7 @@ public class Island : MonoBehaviour
     public float zTipDegrees = 20;
     public float xTipDistance = 50;
     public float zTipDistance = 50;
+    public float weightReductionScale = 600f;
     void UpdateWeightVector()
     {
         averageSummedWeightVector = Vector3.zero;
@@ -113,6 +114,6 @@ public class Island : MonoBehaviour
         float zRot = -Mathf.Lerp(0, xTipDegrees, Mathf.Abs(averageSummedWeightVector.x) / xTipDistance);
         targetRotation = new Vector3(Mathf.Sign(averageSummedWeightVector.z) * xRot, 0, Mathf.Sign(averageSummedWeightVector.x) * zRot);
 
-        transform.position = new Vector3(0, -totalWeight / 200f, 0);
+        transform.position = new Vector3(0, -totalWeight / weightReductionScale, 0);
     }
 }

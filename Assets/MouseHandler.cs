@@ -62,7 +62,7 @@ public class MouseHandler : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    TryPlaceBuilding(placementLoc, placementResource); //We can try and pass the normal in here if we need differing rotations but for now, just use local identity
+                    TryPlaceBuilding(placementLoc, placementResource); 
                 } else
                 {
                     previewGO.SetActive(true);
@@ -133,7 +133,7 @@ public class MouseHandler : MonoBehaviour
         {
             if (buildingToBePlaced.AllowedResoucePlacements.Contains(resource.ResourceType) == false) return false;
             //check if we can place here then return
-            placementLocation = resource.transform.position;
+            placementLocation = buildingToBePlaced.setResourceInactiveOnPlacement ? resource.transform.position : raycastHit.point;
             placementResource = resource;
             return true;
         }

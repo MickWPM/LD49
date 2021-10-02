@@ -139,9 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d0474ef1993e94692e9fa6dc8dc801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllowedResoucePlacements: 
-  weight: 10
+  AllowedResoucePlacements: 02000000
+  weight: 400
   effectiveWeight: 0
   locationPlacement: 1
   buildingPreviewMat: {fileID: 2100000, guid: 7ccf0ae6dc20f464ca58fed8fd2baba4, type: 2}
   RotationFacesOut: 0
+  setResourceInactiveOnPlacement: 0
