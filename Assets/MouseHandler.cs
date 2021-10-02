@@ -25,6 +25,10 @@ public class MouseHandler : MonoBehaviour
         {
             SetBuildingFishingHut();
         }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            SetBuildingMine();
+        }
 
         switch (mouseState)
         {
@@ -91,6 +95,10 @@ public class MouseHandler : MonoBehaviour
     {
         SetBuildingToBePlaced(FishingHut);
     }
+    public void SetBuildingMine()
+    {
+        SetBuildingToBePlaced(Mine);
+    }
 
     void SetBuildingToBePlaced(Building b)
     {
@@ -111,6 +119,7 @@ public class MouseHandler : MonoBehaviour
     public Building LumberYard;
     public Building House;
     public Building FishingHut;
+    public Building Mine;
 
     bool CanBuildingBePlacedOnResource(RaycastHit raycastHit, out Vector3 placementLocation, out Resource placementResource)
     {
