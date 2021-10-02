@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseHandler : MonoBehaviour
 {
@@ -8,7 +9,9 @@ public class MouseHandler : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) mouseState = MouseState.DEFAULT;
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        if (Input.GetMouseButtonDown(1)) ReturnToDefaultState();
 
         switch (mouseState)
         {
@@ -24,11 +27,14 @@ public class MouseHandler : MonoBehaviour
         }
     }
 
+    GameObject previewGO;
+    Vector3 spawnRotation;
 
     void BuildingPlacementMouseStateUpdate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit raycastHit;
+        previewGO.SetActive(false);
         if (Physics.Raycast(ray, out raycastHit, 1000f)) //Add layer mask 
         {
             Vector3 placementLoc;
@@ -40,13 +46,23 @@ public class MouseHandler : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     TryPlaceBuilding(placementLoc, placementResource); //We can try and pass the normal in here if we need differing rotations but for now, just use local identity
+                } else
+                {
+                    previewGO.SetActive(true);
+                    previewGO.transform.position = placementLoc;
                 }
             }
         }
         else
         {
-
         }
+    }
+
+    public void ReturnToDefaultState()
+    {
+        mouseState = MouseState.DEFAULT;
+        if (previewGO != null)
+            Destroy(previewGO.gameObject);
     }
 
     public void SetBuildingHouse()
@@ -66,7 +82,16 @@ public class MouseHandler : MonoBehaviour
     void SetBuildingToBePlaced(Building b)
     {
         mouseState = MouseState.BUILDING_PLACEMENT;
-        buildingToBePlaced = b;
+        buildingToBePlaced = b; 
+        
+        if (previewGO != null)
+            Destroy(previewGO.gameObject);
+
+        Building previewBuilding = Instantiate(buildingToBePlaced);
+        previewBuilding.SetAsPreview();
+        previewGO = previewBuilding.gameObject;
+        spawnRotation = new Vector3(0,previewBuilding.GetRandomRotation(),0);
+        previewGO.transform.rotation = Quaternion.Euler(spawnRotation);
     }
 
     public Building buildingToBePlaced;
@@ -87,7 +112,6 @@ public class MouseHandler : MonoBehaviour
             if (buildingToBePlaced.AllowedResoucePlacements.Contains(resource.ResourceType) == false) return false;
             //check if we can place here then return
             placementLocation = resource.transform.position;
-            Debug.Log("We should tell the resource it is being used here - remove resource or update graphics. Currently just destroying the resource if building placed");
             placementResource = resource;
             return true;
         }
@@ -123,7 +147,9 @@ public class MouseHandler : MonoBehaviour
     public Island island;
     void TryPlaceBuilding(Vector3 pos, Resource resource)
     {
-        island.TryPlaceBuilding(buildingToBePlaced, pos, resource);
+        island.TryPlaceBuilding(buildingToBePlaced, pos, spawnRotation, resource);
+        spawnRotation = new Vector3(0, buildingToBePlaced.GetRandomRotation(), 0);
+        previewGO.transform.rotation = Quaternion.Euler(spawnRotation);
     }
 
     void DefaultMouseStateUpdate()

@@ -12,14 +12,19 @@ public class Island : MonoBehaviour
         targetRotation = transform.rotation.eulerAngles;
     }
 
+
     public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos, Resource r = null)
+    {
+        return TryPlaceBuilding(buildingToBePlaced, pos, Vector3.zero, r);
+    }
+
+    public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos, Vector3 rot, Resource r = null)
     {
         Building b = Instantiate(buildingToBePlaced);
         Transform t = b.transform;
         t.position = pos;
-        //t.up = rotation;  //This is if we pass the hit normal
         t.SetParent(this.transform);
-        t.localRotation = Quaternion.identity;
+        t.localRotation = Quaternion.Euler(rot);
 
         buildings.Add(b);
         float midDist = Vector3.Magnitude(new Vector3(b.transform.position.x, 0, b.transform.position.z));

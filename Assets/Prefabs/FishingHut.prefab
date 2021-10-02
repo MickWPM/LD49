@@ -61,7 +61,9 @@ MonoBehaviour:
   AllowedResoucePlacements: 
   weight: 10
   effectiveWeight: 0
-  locationPlacement: 2
+  locationPlacement: 0
+  buildingPreviewMat: {fileID: 2100000, guid: 7ccf0ae6dc20f464ca58fed8fd2baba4, type: 2}
+  RotationFacesOut: 0
 --- !u!1 &8960960638365589924
 GameObject:
   m_ObjectHideFlags: 0
