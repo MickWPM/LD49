@@ -13,6 +13,19 @@ public class MouseHandler : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) ReturnToDefaultState();
 
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            SetBuildingHouse();
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            SetBuildingLumberyard();
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            SetBuildingFishingHut();
+        }
+
         switch (mouseState)
         {
             case MouseState.DEFAULT:
