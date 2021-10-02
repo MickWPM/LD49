@@ -549,6 +549,7 @@ GameObject:
   - component: {fileID: 217317421}
   - component: {fileID: 217317420}
   - component: {fileID: 217317419}
+  - component: {fileID: 217317423}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -637,6 +638,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &217317423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217317418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f29cdff93a459469b1901e44a20aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placedBuildingText: {fileID: 1790906585}
 --- !u!1001 &219780841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1680,6 +1694,8 @@ GameObject:
   m_Component:
   - component: {fileID: 530889832}
   - component: {fileID: 530889831}
+  - component: {fileID: 530889834}
+  - component: {fileID: 530889833}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1700,13 +1716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseState: 0
-  buildingToBePlaced: {fileID: 0}
-  LumberYard: {fileID: 1962722785164024649, guid: 252d24dee913cd146b207776e86d0c7f, type: 3}
-  House: {fileID: 1962722785164024649, guid: 9211c93af7b13f44c9be7a968746623c, type: 3}
-  FishingHut: {fileID: 1962722785164024649, guid: 7fe40d9a756ec01479936b4590a7713c, type: 3}
-  Mine: {fileID: 1962722785164024649, guid: 75dc8603ec3c82e4d88f503f9edcee85, type: 3}
   hoverObject: {fileID: 0}
-  island: {fileID: 1680462742}
 --- !u!4 &530889832
 Transform:
   m_ObjectHideFlags: 0
@@ -1721,6 +1731,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &530889833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530889830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14c0eaeb5f01da441b8b490c715a1685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingToBePlaced: {fileID: 0}
+  LumberYard: {fileID: 1962722785164024649, guid: 252d24dee913cd146b207776e86d0c7f, type: 3}
+  House: {fileID: 1962722785164024649, guid: 9211c93af7b13f44c9be7a968746623c, type: 3}
+  FishingHut: {fileID: 1962722785164024649, guid: 7fe40d9a756ec01479936b4590a7713c, type: 3}
+  Mine: {fileID: 1962722785164024649, guid: 75dc8603ec3c82e4d88f503f9edcee85, type: 3}
+  island: {fileID: 0}
+--- !u!114 &530889834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530889830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13f3df2176106fc4aa2051c8385b1d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &530975740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3794,8 +3834,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530889831}
-        m_TargetAssemblyTypeName: MouseHandler, Assembly-CSharp
+      - m_Target: {fileID: 530889833}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
         m_MethodName: SetBuildingLumberyard
         m_Mode: 1
         m_Arguments:
@@ -6224,8 +6264,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530889831}
-        m_TargetAssemblyTypeName: MouseHandler, Assembly-CSharp
+      - m_Target: {fileID: 530889833}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
         m_MethodName: SetBuildingMine
         m_Mode: 1
         m_Arguments:
@@ -6525,8 +6565,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530889831}
-        m_TargetAssemblyTypeName: MouseHandler, Assembly-CSharp
+      - m_Target: {fileID: 530889833}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
         m_MethodName: SetBuildingHouse
         m_Mode: 1
         m_Arguments:
@@ -6956,8 +6996,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530889831}
-        m_TargetAssemblyTypeName: MouseHandler, Assembly-CSharp
+      - m_Target: {fileID: 530889833}
+        m_TargetAssemblyTypeName: BuildingPlacer, Assembly-CSharp
         m_MethodName: SetBuildingFishingHut
         m_Mode: 1
         m_Arguments:
