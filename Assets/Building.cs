@@ -8,6 +8,7 @@ public class Building : MonoBehaviour
     public int weight;
     public float effectiveWeight;
     public IslandLocationPlacement locationPlacement = IslandLocationPlacement.GRASS;
+    public BuildingType buildingType;
 
     Island island;
     private void Awake()
@@ -69,6 +70,14 @@ public class Building : MonoBehaviour
         {
             thisResource.gameObject.SetActive(true);
         }
+    }
+
+    public enum BuildingType
+    {
+        HOUSE,
+        LUMBER_YARD,
+        FISHING_HUT,
+        MINE
     }
 
     public enum IslandLocationPlacement

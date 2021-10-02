@@ -69,7 +69,10 @@ MonoBehaviour:
   weight: 200
   effectiveWeight: 0
   locationPlacement: 1
+  buildingType: 1
   buildingPreviewMat: {fileID: 2100000, guid: 7ccf0ae6dc20f464ca58fed8fd2baba4, type: 2}
+  RotationFacesOut: 0
+  setResourceInactiveOnPlacement: 1
 --- !u!1 &6370878637524968664
 GameObject:
   m_ObjectHideFlags: 0

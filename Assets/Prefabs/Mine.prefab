@@ -143,6 +143,7 @@ MonoBehaviour:
   weight: 400
   effectiveWeight: 0
   locationPlacement: 1
+  buildingType: 3
   buildingPreviewMat: {fileID: 2100000, guid: 7ccf0ae6dc20f464ca58fed8fd2baba4, type: 2}
   RotationFacesOut: 0
   setResourceInactiveOnPlacement: 0

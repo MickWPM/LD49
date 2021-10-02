@@ -6,6 +6,17 @@ public class Island : MonoBehaviour
 {
     public List<Building> buildings;
 
+    public int HouseCount { get; private set; }
+    public int LumberyardCount { get; private set; }
+    public int FishingHutCount { get; private set; }
+    public int MineCount { get; private set; }
+
+    public int HouseCountTarget { get; private set; }
+    public int LumberyardCountTarget { get; private set; }
+    public int FishingHutCountTarget { get; private set; }
+    public int MineCountTarget { get; private set; }
+
+
     private void Awake()
     {
         buildings = new List<Building>();
@@ -17,6 +28,9 @@ public class Island : MonoBehaviour
     {
         return TryPlaceBuilding(buildingToBePlaced, pos, Vector3.zero, r);
     }
+
+    public event System.Action<Building.BuildingType> BuildingPlacedEvent;
+    public event System.Action<Building.BuildingType> BuildingRemovedEvent;
 
     public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos, Vector3 rot, Resource r = null)
     {
@@ -33,6 +47,24 @@ public class Island : MonoBehaviour
 
         totalWeight += b.weight;
 
+        switch (b.buildingType)
+        {
+            case Building.BuildingType.HOUSE:
+                HouseCount++;
+                break;
+            case Building.BuildingType.LUMBER_YARD:
+                LumberyardCount++;
+                break;
+            case Building.BuildingType.FISHING_HUT:
+                FishingHutCount++;
+                break;
+            case Building.BuildingType.MINE:
+                MineCount++;
+                break;
+            default:
+                break;
+        }
+        BuildingPlacedEvent?.Invoke(b.buildingType);
         return true;
     }
 
@@ -74,7 +106,25 @@ public class Island : MonoBehaviour
 
     public void RemoveBuilding(Building b)
     {
+        switch (b.buildingType)
+        {
+            case Building.BuildingType.HOUSE:
+                HouseCount--;
+                break;
+            case Building.BuildingType.LUMBER_YARD:
+                LumberyardCount--;
+                break;
+            case Building.BuildingType.FISHING_HUT:
+                FishingHutCount--;
+                break;
+            case Building.BuildingType.MINE:
+                MineCount--;
+                break;
+            default:
+                break;
+        }
         buildings.Remove(b);
+        BuildingRemovedEvent?.Invoke(b.buildingType);
         totalWeight -= b.weight;
         Destroy(b.gameObject);
     }
@@ -83,11 +133,7 @@ public class Island : MonoBehaviour
     void AlignIsland()
     {
         //Deliberately use the wrong lerp to get a nice ease out!
-        //transform.rotation = Quaternion.Euler(Vector3.Lerp(transform.rotation.eulerAngles, targetRotation, Time.deltaTime));
-
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRotation), Time.deltaTime);
-
-        //transform.rotation = Quaternion.Euler(targetRotation);
     }
 
     public Vector3 averageSummedWeightVector;
@@ -96,6 +142,7 @@ public class Island : MonoBehaviour
     public float xTipDistance = 50;
     public float zTipDistance = 50;
     public float weightReductionScale = 600f;
+
     void UpdateWeightVector()
     {
         averageSummedWeightVector = Vector3.zero;
