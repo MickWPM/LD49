@@ -16,13 +16,24 @@ public class Island : MonoBehaviour
     public int FishingHutCountTarget { get; private set; }
     public int MineCountTarget { get; private set; }
 
-
+    GameManager gameManager;
     private void Awake()
     {
         buildings = new List<Building>();
         targetRotation = transform.rotation.eulerAngles;
+        gameManager = GameObject.FindObjectOfType<GameManager>();       //Better to have a central event handler
+        gameManager.TaskIssuedEvent += GameManager_TaskIssuedEvent;
     }
 
+    bool onTask = false;
+    private void GameManager_TaskIssuedEvent(Task task)
+    {
+        HouseCountTarget += task.HouseRequirement;
+        LumberyardCountTarget += task.LumberyardRequirement;
+        FishingHutCountTarget += task.FishingHutRequirement;
+        MineCountTarget += task.MineRequirement;
+        onTask = true;
+    }
 
     public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos, Resource r = null)
     {
@@ -74,6 +85,7 @@ public class Island : MonoBehaviour
         UpdateWeightVector();
         AlignIsland();
         CheckBuildings();
+        CheckTaskComplete();
         TickBuildings();
     }
 
@@ -82,6 +94,21 @@ public class Island : MonoBehaviour
         foreach (var b in buildings)
         {
             b.Tick(Time.deltaTime);
+        }
+    }
+
+    public event System.Action TaskCompleteEvent;
+    void CheckTaskComplete()
+    {
+        if (onTask == false) return;
+
+        if(HouseCount >= HouseCountTarget &&
+            LumberyardCount >= LumberyardCountTarget &&
+            FishingHutCount >= FishingHutCountTarget &&
+            MineCount >= MineCountTarget)
+        {
+            onTask = false;
+            TaskCompleteEvent?.Invoke();
         }
     }
 
