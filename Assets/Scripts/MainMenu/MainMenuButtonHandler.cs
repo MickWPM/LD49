@@ -13,6 +13,7 @@ public class MainMenuButtonHandler : MonoBehaviour
     public TMPro.TextMeshProUGUI popupText;
     private void Awake()
     {
+        Time.timeScale = 1;
         HideNewGameButtons();
         HideOptionsScreen();
         HideHowToPlay();
@@ -25,13 +26,22 @@ public class MainMenuButtonHandler : MonoBehaviour
     {
         if (quitting) return;
         quitting = true;
-        Invoke("DoQuit", 0.2f);
     }
 
-    void DoQuit()
+    float quitTime = 0.2f;
+    private void Update()
     {
-        Application.Quit();
+        if(quitting)
+        {
+            quitTime -= Time.unscaledDeltaTime;
+            if (quitTime < 0)
+            {
+                Application.Quit();
+                Debug.Log("Quit");
+            }
+        }
     }
+
 
     #region NewGame
     bool showingNewGameButtons = false;
@@ -76,6 +86,17 @@ public class MainMenuButtonHandler : MonoBehaviour
         GameObject.FindObjectOfType<GameOptionsPersistent>().GameModeSelected = GameOptionsPersistent.GameMode.HARDCORE_ZEN;
         HideMapOptions();
         ShowMapOptions();
+    }
+
+    MyButton lastButtonClicked;
+    public void ButtonClicked(MyButton button)
+    {
+        if(lastButtonClicked != null)
+        {
+            lastButtonClicked.UnDoClickedEffect();
+        }
+        lastButtonClicked = button;
+        lastButtonClicked.DoClickedEffect();
     }
 
     public void PlayTestMap()

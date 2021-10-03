@@ -49,6 +49,17 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             ShowButton();
     }
 
+    public void DoClickedEffect()
+    {
+        if (animator != null)
+            animator.SetTrigger("Clicked");
+    }
+
+    public void UnDoClickedEffect()
+    {
+        if (animator != null)
+            animator.SetTrigger("Unclicked");
+    }
 
     void ShowButton()
     {

@@ -1450,7 +1450,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f3df2176106fc4aa2051c8385b1d66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasks: []
+  tasks:
+  - {fileID: 11400000, guid: 462537bdd9f5943448e6b8ab635c818f, type: 2}
+  - {fileID: 11400000, guid: 418aa761065d74840893fa758da52846, type: 2}
+  - {fileID: 11400000, guid: ba0b39ea57c472745857d6de734a58f3, type: 2}
+  - {fileID: 11400000, guid: 44ca2352a7bce304fb88dc849fbc6312, type: 2}
+  - {fileID: 11400000, guid: 4e75fe267b7969c4a91e40bd1f36a3f8, type: 2}
+  - {fileID: 11400000, guid: bfb713fd177d8fc4487da59d09b74d34, type: 2}
+  - {fileID: 11400000, guid: da3010c8f3d425d4b9ec23a87d0408d3, type: 2}
+  - {fileID: 11400000, guid: 408350418047d02458774c7cd474829c, type: 2}
+  - {fileID: 11400000, guid: 047ec1d1c83e48b45b1e2ebdd688d4a1, type: 2}
+  - {fileID: 11400000, guid: 1e1919a14984bfd4d9b62117eb8d1498, type: 2}
+  - {fileID: 11400000, guid: f8392543d5a70344ea0c8589644a359a, type: 2}
 --- !u!114 &530889835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4846,7 +4857,7 @@ MonoBehaviour:
   zTipDegrees: 40
   xTipDistance: 190
   zTipDistance: 200
-  weightReductionScale: 400
+  weightReductionScale: 500
 --- !u!1001 &1731808537
 PrefabInstance:
   m_ObjectHideFlags: 0

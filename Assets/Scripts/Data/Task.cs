@@ -26,7 +26,7 @@ public class Task : ScriptableObject
     public static Task RandomTask(int lumberCap = 999)
     {
         Task task = new Task();
-        int numToPlace = Random.Range(1, 5);        //This is approximate and really represents the minimum as every building has a chance to be added once per below
+        int numToPlace = Random.Range(2, 5);        //This is approximate and really represents the minimum as every building has a chance to be added once per below
         task.HouseRequirement = Random.Range(0, 2);
         task.LumberyardRequirement = lumberCap > 0 ? Random.Range(0, 2) : 0;
         task.FishingHutRequirement = Random.Range(0, 2);
