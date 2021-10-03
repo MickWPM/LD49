@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Task", menuName = "LD49/Task")]
 public class Task : ScriptableObject
 {
+    public static int TimePerBuildingRandom = 15;
     public int HouseRequirement = 0;
     public int LumberyardRequirement = 0;
     public int FishingHutRequirement = 0;
@@ -64,7 +65,7 @@ public class Task : ScriptableObject
             Debug.LogWarning("RandomTask was not filled out properlly");
             task.HouseRequirement++;
         }
-        
+        task.TimeToComplete = TimePerBuildingRandom * task.TotalBuildingsToPlace();
         return task;
     }
 }

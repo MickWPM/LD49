@@ -51,6 +51,20 @@ public class MainMenuButtonHandler : MonoBehaviour
         ShowMapOptions();
     }
 
+    public void StartZen()
+    {
+        GameObject.FindObjectOfType<GameOptionsPersistent>().GameModeSelected = GameOptionsPersistent.GameMode.ZEN;
+        HideMapOptions();
+        ShowMapOptions();
+    }
+
+    public void StartHardcoreZen()
+    {
+        GameObject.FindObjectOfType<GameOptionsPersistent>().GameModeSelected = GameOptionsPersistent.GameMode.HARDCORE_ZEN;
+        HideMapOptions();
+        ShowMapOptions();
+    }
+
     public void PlayTestMap()
     {
         Application.LoadLevel(1);

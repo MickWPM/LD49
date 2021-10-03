@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
         if(gameOptions == null)
             gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
 
-        Debug.Log($"Game mode selected = {gameOptions.GameModeSelected}.", gameOptions.gameObject);
         switch (gameOptions.GameModeSelected)
         {
             case GameOptionsPersistent.GameMode.NORMAL:
@@ -44,12 +43,31 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
+        if (gameOptions != null) StartGame();
+    }
+
+    public event System.Action<GameOptionsPersistent.GameMode> GameStartedEvent;
+    void StartGame()
+    {
         Invoke("IssueNextTask", 2f);
         playing = true;
+        Debug.Log("starting game: " + CurrentGameMode);
+        GameStartedEvent?.Invoke(CurrentGameMode);
     }
 
     private void Update()
     {
+        if (gameOptions == null)
+        {
+            gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
+            if (gameOptions == null)
+            {
+                return;
+            } else
+            {
+                StartGame();
+            }
+        }
         if (firstTaskIssued == false) return;
         if (gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.ZEN || gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.HARDCORE_ZEN) return;
 
@@ -66,6 +84,14 @@ public class GameManager : MonoBehaviour
         if (currentTask == null) return -1;
         if (gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.HARDCORE_ZEN || gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.ZEN) return -1;
         return Mathf.Clamp01(timeLeftToComplete / currentTask.TimeToComplete);
+    }
+
+    public GameOptionsPersistent.GameMode CurrentGameMode
+    {
+        get
+        {
+            return gameOptions.GameModeSelected;
+        }
     }
 
     public event System.Action<GameOverCause> GameOverEvent;
@@ -96,23 +122,6 @@ public class GameManager : MonoBehaviour
         timeLeftToComplete = currentTask.TimeToComplete;
         TaskIssuedEvent?.Invoke(currentTask);
     }
-    //public void IssueNextTask()
-    //{
-    //    firstTaskIssued = true;
-    //    taskID++;
-    //    Task newTask;
-    //    if (taskID < tasks.Count)
-    //    {
-    //        newTask = tasks[taskID];
-    //    }
-    //    else
-    //    {
-    //        newTask = Task.RandomTask();
-    //    }
-    //    timeLeftToComplete = newTask.TimeToComplete;
-    //    currentTask = newTask;
-    //    TaskIssuedEvent?.Invoke(newTask);
-    //}
 
     public int TasksCompleted
     {
