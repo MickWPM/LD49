@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4524730402980032239}
   - component: {fileID: 4524730402980032238}
+  - component: {fileID: 4788207898002605796}
   m_Layer: 0
   m_Name: AmbientAudio
   m_TagString: Untagged
@@ -127,3 +128,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4788207898002605796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524730402980032237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74825ae95c7be65449689664281ade39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seagullSounds:
+  - {fileID: 8300000, guid: a40aa4e9461bf2f42994c3b5841b3b70, type: 3}
+  - {fileID: 8300000, guid: c1e592f8a9e3f0c4e867aa1fa9f2bb99, type: 3}
+  - {fileID: 8300000, guid: 8acf3c198cc37d44cae0161472bb71d0, type: 3}
+  - {fileID: 8300000, guid: 749c4f8f0abf2d744b1d13b25efbc1cf, type: 3}
+  - {fileID: 8300000, guid: 81d259ae026c47144bb85be3f9f05cd3, type: 3}
+  seagullDelay: {x: 6, y: 20}

@@ -9,16 +9,22 @@ public class Building : MonoBehaviour
     public float effectiveWeight;
     public IslandLocationPlacement locationPlacement = IslandLocationPlacement.GRASS;
     public BuildingType buildingType;
-
+    AudioSource audioSource;
+    public AudioClip splashClip;
+    AudioHelper audioHelper;
     Island island;
     private void Awake()
     {
         island = GameObject.FindObjectOfType<Island>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioHelper = GameObject.FindObjectOfType<AudioHelper>();
     }
 
     public Material buildingPreviewMat;
     public void SetAsPreview()
     {
+        if (audioSource != null) audioSource.enabled = false;
+
         foreach (var mr in gameObject.GetComponentsInChildren<MeshRenderer>())
         {
             mr.material = buildingPreviewMat;
@@ -69,6 +75,11 @@ public class Building : MonoBehaviour
         if(thisResource != null)
         {
             thisResource.gameObject.SetActive(true);
+        }
+
+        if(splashClip != null)
+        {
+            audioHelper.PlayClip(splashClip);
         }
     }
 
