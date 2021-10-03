@@ -8,12 +8,20 @@ public class MouseHandler : MonoBehaviour
     public MouseState mouseState;
     BuildingPlacer buildingPlacer;
     Island island;
+
+    public Texture2D defaultMousePointer;
+    public Texture2D placingBuildingPointer;
+    public Texture2D destroyBuildingPointer;
+    public Texture2D cantPlaceMousePointer;
+    public Vector2 cantPlacePointerOffset = new Vector2(128, 128);
     private void Awake()
     {
         buildingPlacer = gameObject.GetComponent<BuildingPlacer>();
         buildingPlacer.BuildingSetToBePlacedEvent += BuildingPlacer_BuildingSetToBePlacedEvent;
         island = GameObject.FindObjectOfType<Island>();
         island.BuildingPlacedEvent += Island_BuildingPlacedEvent;
+
+        SetMousePointer(MousePointerStyle.NORMAL);
     }
 
     private void Island_BuildingPlacedEvent(Building.BuildingType obj)
@@ -82,8 +90,11 @@ public class MouseHandler : MonoBehaviour
             Vector3 placementLoc;
             Resource placementResource = null;
             bool clearGround = buildingPlacer.CanBuildingBePlacedOnResource(raycastHit, out placementLoc, out placementResource);
+            
+            SetMousePointer(clearGround ? MousePointerStyle.PLACING_BUILDING : MousePointerStyle.CANT_PLACE_BUILDING);
+
             //Can we place building
-            if(clearGround)
+            if (clearGround)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -116,17 +127,54 @@ public class MouseHandler : MonoBehaviour
         RaycastHit raycastHit;
         if (Physics.Raycast(ray, out raycastHit, 1000f)) //Add layer mask 
         {
-            if(Input.GetKeyDown(KeyCode.R))
+
+            Building b = raycastHit.collider.gameObject.GetComponent<Building>();
+            if (b != null)
             {
-                Building b = raycastHit.collider.gameObject.GetComponent<Building>();
-                if (b != null)
+                SetMousePointer(MousePointerStyle.DESTROY_BUILDING);
+                if(Input.GetMouseButtonDown(0))
+                {
                     b.DeleteBuilding();
+                }
+            } else
+            {
+                SetMousePointer(MousePointerStyle.NORMAL);
             }
         }
         else
         {
+            SetMousePointer(MousePointerStyle.NORMAL);
         }
     }
+
+    void SetMousePointer(MousePointerStyle style)
+    {
+        Vector2 offset = Vector2.zero;
+        Texture2D pointerTex = defaultMousePointer;
+        switch (style)
+        {
+            case MousePointerStyle.PLACING_BUILDING:
+                pointerTex = placingBuildingPointer;
+                break;
+            case MousePointerStyle.CANT_PLACE_BUILDING:
+                pointerTex = cantPlaceMousePointer;
+                offset = cantPlacePointerOffset;
+                break;
+            case MousePointerStyle.DESTROY_BUILDING:
+                pointerTex = destroyBuildingPointer;
+                break;
+        }
+
+        Cursor.SetCursor(pointerTex, offset, CursorMode.Auto);
+    }
+}
+
+public enum MousePointerStyle
+{
+    NORMAL,
+    PLACING_BUILDING,
+    CANT_PLACE_BUILDING,
+    DESTROY_BUILDING
 }
 
 public enum MouseState

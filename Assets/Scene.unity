@@ -1791,6 +1791,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseState: 0
+  defaultMousePointer: {fileID: 2800000, guid: 4a7ab7bc1c47b2b4791bfc83695113e1, type: 3}
+  placingBuildingPointer: {fileID: 2800000, guid: 4a7ab7bc1c47b2b4791bfc83695113e1, type: 3}
+  destroyBuildingPointer: {fileID: 2800000, guid: 4461d5ae7b2b87342a5d3ea8b07cbd25, type: 3}
+  cantPlaceMousePointer: {fileID: 2800000, guid: 349d84ee5fd88d44d8e6f0436d82168c, type: 3}
+  cantPlacePointerOffset: {x: 128, y: 128}
   hoverObject: {fileID: 0}
 --- !u!4 &530889832
 Transform:
