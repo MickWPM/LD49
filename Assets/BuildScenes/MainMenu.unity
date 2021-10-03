@@ -6319,33 +6319,57 @@ PrefabInstance:
       propertyPath: clickedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3471498974363619791, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471498974363619791, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3471498974363619791, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182377187773693916, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5182377187773693916, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8988722368367882727, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.663
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8988722368367882727, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8988722368367882727, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.663
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8988722369483565524, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.663
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8988722369483565524, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8988722369567585229, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+      propertyPath: mouseScrollSlider
+      value: 
+      objectReference: {fileID: 8988722368083182111}
     - target: {fileID: 8988722369567585232, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_Name
       value: OptionsInfo
       objectReference: {fileID: 0}
     - target: {fileID: 8988722369567585232, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8988722369567585233, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
       propertyPath: m_Pivot.x
@@ -6433,3 +6457,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+--- !u!114 &8988722368083182111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5104270825290551230, guid: 8fddc117343cd1343a2e7062692d5e7e, type: 3}
+  m_PrefabInstance: {fileID: 8988722368083182110}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

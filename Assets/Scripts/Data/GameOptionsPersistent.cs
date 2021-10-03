@@ -12,6 +12,8 @@ public class GameOptionsPersistent : MonoBehaviour
 
     public float AudioVolume = 1f;
 
+    public float MouseScrollZoomSpeed = 10f;
+
     private void Awake()
     {
         GameOptionsPersistent[] existingInstance = GameObject.FindObjectsOfType<GameOptionsPersistent>();

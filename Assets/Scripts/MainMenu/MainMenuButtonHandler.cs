@@ -20,7 +20,15 @@ public class MainMenuButtonHandler : MonoBehaviour
         Cursor.SetCursor(MainMenuCursor, Vector2.zero, CursorMode.Auto);
     }
 
+    bool quitting = false;
     public void QuitGame()
+    {
+        if (quitting) return;
+        quitting = true;
+        Invoke("DoQuit", 0.2f);
+    }
+
+    void DoQuit()
     {
         Application.Quit();
     }

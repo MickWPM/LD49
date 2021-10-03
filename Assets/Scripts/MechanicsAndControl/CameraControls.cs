@@ -9,7 +9,6 @@ public class CameraControls : MonoBehaviour
 
     public Transform zoomedInPosTransform, zoomedOutPosTransform;
 
-    public float zoomSpeed = 10f;
 
     public GameOptionsPersistent gameOptionsPersistent;
     GameManager gameManager;
@@ -23,19 +22,29 @@ public class CameraControls : MonoBehaviour
     {
         gameover = true;
     }
-
+    public float DEBUG_ZOOM;
     [Range(0, 1)]
     public float zoom = 0;
     void LateUpdate()
     {
-        if(gameOptionsPersistent == null)
+        float zoomSpeed = 5;
+        if (gameOptionsPersistent == null)
         {
             GameObject.FindObjectOfType<GameOptionsPersistent>();
             if(gameOptionsPersistent != null)
             {
                 AudioListener.volume = gameOptionsPersistent.MuteAudio ? 0 : 1;
             }
+        } else
+        {
+            zoomSpeed = gameOptionsPersistent.MouseScrollZoomSpeed;
         }
+
+        if (gameManager.GameOptionsPersistent != null)
+        {
+            zoomSpeed = gameManager.GameOptionsPersistent.MouseScrollZoomSpeed;
+        }
+        DEBUG_ZOOM = zoomSpeed;
 
         if(gameover)
         {

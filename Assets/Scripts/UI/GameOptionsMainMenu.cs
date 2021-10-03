@@ -7,6 +7,7 @@ public class GameOptionsMainMenu : MonoBehaviour
 {
     public TMPro.TMP_InputField taskVisibleTimeText;
     public Toggle muteToggle;
+    public Slider mouseScrollSlider;
     public Slider audioSlider;
     GameOptionsPersistent gameOptions;
 
@@ -28,6 +29,7 @@ public class GameOptionsMainMenu : MonoBehaviour
         taskVisibleTimeText.text = gameOptions.NotificationTimeVisible.ToString();
         audioSlider.value = gameOptions.AudioVolume;
         muteToggle.isOn = gameOptions.MuteAudio;
+        mouseScrollSlider.value = gameOptions.MouseScrollZoomSpeed;
     }
 
     public void SetAudioMute()
@@ -38,6 +40,11 @@ public class GameOptionsMainMenu : MonoBehaviour
     public void SetVolumeLevel()
     {
         AudioListener.volume = muteToggle.isOn ? 0 : audioSlider.value;
+    }
+
+    public void SetMouseScrollSpeed()
+    {
+        gameOptions.MouseScrollZoomSpeed = mouseScrollSlider.value;
     }
 
     private void OnDisable()
@@ -53,5 +60,6 @@ public class GameOptionsMainMenu : MonoBehaviour
 
         gameOptions.AudioVolume = audioSlider.value;
         gameOptions.MuteAudio = muteToggle.isOn;
+        gameOptions.MouseScrollZoomSpeed = mouseScrollSlider.value;
     }
 }
