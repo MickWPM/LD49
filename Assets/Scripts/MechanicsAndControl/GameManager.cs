@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
 
     GameOptionsPersistent gameOptions;
 
+    private float timeLeftToComplete;
+    public float TimeLeftToComplete { get => timeLeftToComplete; private set => timeLeftToComplete = value; }
+    bool firstTaskIssued = false;
+    bool playing = false;
     private void Awake()
     {
         island = GameObject.FindObjectOfType<Island>();
@@ -26,10 +30,11 @@ public class GameManager : MonoBehaviour
         switch (gameOptions.GameModeSelected)
         {
             case GameOptionsPersistent.GameMode.NORMAL:
-                Debug.Log("Normal mode");
+            case GameOptionsPersistent.GameMode.ZEN:
                 break;
+            case GameOptionsPersistent.GameMode.HARDCORE_ZEN:
             case GameOptionsPersistent.GameMode.HARDCORE:
-                Debug.Log("Game over");
+                EndGame(GameOverCause.HARDCORE_WASHED_AWAY);
                 break;
             default:
                 break;
@@ -40,6 +45,33 @@ public class GameManager : MonoBehaviour
     {
         gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
         Invoke("IssueNextTask", 2f);
+        playing = true;
+    }
+
+    private void Update()
+    {
+        if (firstTaskIssued == false) return;
+        if (gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.ZEN || gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.HARDCORE_ZEN) return;
+
+
+        timeLeftToComplete -= Time.deltaTime;
+        if(timeLeftToComplete < 0)
+        {
+            EndGame(GameOverCause.TIME_OUT);
+        }
+    }
+
+    public float GetTaskTimeRemaining()
+    {
+        if (currentTask == null) return -1;
+        if (gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.HARDCORE_ZEN || gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.ZEN) return -1;
+        return Mathf.Clamp01(timeLeftToComplete / currentTask.TimeToComplete);
+    }
+
+    public event System.Action<GameOverCause> GameOverEvent;
+    public void EndGame(GameOverCause cause)
+    {
+        Debug.Log("END GAME : " + cause);
     }
 
     private void Island_TaskCompleteEvent()
@@ -48,21 +80,39 @@ public class GameManager : MonoBehaviour
     }
 
     public event System.Action<Task> TaskIssuedEvent;
-
+    Task currentTask;
     public void IssueNextTask()
     {
+        firstTaskIssued = true;
         taskID++;
-        Task newTask;
         if (taskID < tasks.Count)
         {
-            newTask = tasks[taskID];
+            currentTask = tasks[taskID];
         }
         else
         {
-            newTask = Task.RandomTask();
+            currentTask = Task.RandomTask();
         }
-        TaskIssuedEvent?.Invoke(newTask);
+        timeLeftToComplete = currentTask.TimeToComplete;
+        TaskIssuedEvent?.Invoke(currentTask);
     }
+    //public void IssueNextTask()
+    //{
+    //    firstTaskIssued = true;
+    //    taskID++;
+    //    Task newTask;
+    //    if (taskID < tasks.Count)
+    //    {
+    //        newTask = tasks[taskID];
+    //    }
+    //    else
+    //    {
+    //        newTask = Task.RandomTask();
+    //    }
+    //    timeLeftToComplete = newTask.TimeToComplete;
+    //    currentTask = newTask;
+    //    TaskIssuedEvent?.Invoke(newTask);
+    //}
 
     public int TasksCompleted
     {
@@ -70,5 +120,12 @@ public class GameManager : MonoBehaviour
         {
             return taskID;
         }
+    }
+
+    public enum GameOverCause
+    { 
+        TIME_OUT,
+        HARDCORE_WASHED_AWAY,
+        RETIRED
     }
 }

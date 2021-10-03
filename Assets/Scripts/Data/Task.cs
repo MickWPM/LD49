@@ -10,6 +10,8 @@ public class Task : ScriptableObject
     public int FishingHutRequirement = 0;
     public int MineRequirement = 0;
 
+    public int TimeToComplete = 20;
+
     public int TotalBuildingsToPlace()
     {
         return HouseRequirement + LumberyardRequirement + FishingHutRequirement + MineRequirement;

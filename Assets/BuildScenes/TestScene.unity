@@ -689,6 +689,7 @@ GameObject:
   - component: {fileID: 217317419}
   - component: {fileID: 217317423}
   - component: {fileID: 217317424}
+  - component: {fileID: 217317425}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -807,6 +808,20 @@ MonoBehaviour:
   taskGO: {fileID: 2079080426}
   newTaskImage: {fileID: 2079080428}
   taskText: {fileID: 2069108486}
+--- !u!114 &217317425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217317418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08a0dbdbac99dd4f834c07257db4db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerFillImage: {fileID: 399366580}
+  timerGO: {fileID: 144292875}
 --- !u!1001 &219780841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1599,7 +1614,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0
+  m_FillAmount: 0.304
   m_FillClockwise: 1
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
