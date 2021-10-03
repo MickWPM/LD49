@@ -24,4 +24,9 @@ public class AmbientAudioManager : MonoBehaviour
             audioSource.PlayOneShot(seagullSounds[Random.Range(0, seagullSounds.Length)]);
         }
     }
+
+    public void PlayClipOneShot(AudioClip audioClip)
+    {
+        audioSource.PlayOneShot(audioClip);
+    }
 }
