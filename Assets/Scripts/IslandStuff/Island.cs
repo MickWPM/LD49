@@ -6,6 +6,7 @@ public class Island : MonoBehaviour
 {
     public List<Building> buildings;
 
+    public int MaxLumber;
     public int HouseCount { get; private set; }
     public int LumberyardCount { get; private set; }
     public int FishingHutCount { get; private set; }
@@ -38,6 +39,11 @@ public class Island : MonoBehaviour
     public bool TryPlaceBuilding(Building buildingToBePlaced, Vector3 pos, Resource r = null)
     {
         return TryPlaceBuilding(buildingToBePlaced, pos, Vector3.zero, r);
+    }
+
+    public int RemainingLumberRoom()
+    {
+        return MaxLumber - LumberyardCountTarget;
     }
 
     public event System.Action<Building.BuildingType> BuildingPlacedEvent;

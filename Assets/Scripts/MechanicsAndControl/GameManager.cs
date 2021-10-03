@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            currentTask = Task.RandomTask();
+            currentTask = Task.RandomTask(island.RemainingLumberRoom());
         }
         timeLeftToComplete = currentTask.TimeToComplete;
         TaskIssuedEvent?.Invoke(currentTask);

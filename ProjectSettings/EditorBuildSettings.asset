@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BuildScenes/TestScene.unity
     guid: 7078bab7f6f4ac34e976ff40fa7b3006
+  - enabled: 1
+    path: Assets/BuildScenes/MaugScene.unity
+    guid: 809d21d6959a3584da93fd55d96bfaa9
   m_configObjects: {}

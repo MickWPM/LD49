@@ -70,6 +70,11 @@ public class MainMenuButtonHandler : MonoBehaviour
         Application.LoadLevel(1);
     }
 
+    public void PlayMaug()
+    {
+        Application.LoadLevel(2 );
+    }
+
     void HideNewGameButtons()
     {
         showingNewGameButtons = false;

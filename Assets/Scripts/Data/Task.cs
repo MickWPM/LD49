@@ -23,12 +23,12 @@ public class Task : ScriptableObject
         return $"Houses: {HouseRequirement}\nLumberyards: {LumberyardRequirement}\nFishing Huts: {FishingHutRequirement}\nMines: {MineRequirement}";
     }
 
-    public static Task RandomTask()
+    public static Task RandomTask(int lumberCap = 999)
     {
         Task task = new Task();
         int numToPlace = Random.Range(1, 5);        //This is approximate and really represents the minimum as every building has a chance to be added once per below
         task.HouseRequirement = Random.Range(0, 2);
-        task.LumberyardRequirement = Random.Range(0, 2);
+        task.LumberyardRequirement = lumberCap > 0 ? Random.Range(0, 2) : 0;
         task.FishingHutRequirement = Random.Range(0, 2);
         task.MineRequirement = Random.Range(0, 2);
 
@@ -44,7 +44,8 @@ public class Task : ScriptableObject
                         task.HouseRequirement++;
                         break;
                     case Building.BuildingType.LUMBER_YARD:
-                        task.LumberyardRequirement++;
+                        if(lumberCap < task.LumberyardRequirement)
+                            task.LumberyardRequirement++;
                         break;
                     case Building.BuildingType.FISHING_HUT:
                         task.FishingHutRequirement++;
