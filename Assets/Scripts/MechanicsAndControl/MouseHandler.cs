@@ -43,7 +43,12 @@ public class MouseHandler : MonoBehaviour
 
     void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject()) return;
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            SetMousePointer(MousePointerStyle.NORMAL);
+            return;
+        }
+
 
         if (Input.GetMouseButtonDown(1)) ReturnToDefaultState();
 
