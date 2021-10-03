@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitToMenu()
     {
-        Application.LoadLevel(0);
+        Application.LoadLevel(1);
     }
 
     public void RetireWithDignity()
