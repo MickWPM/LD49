@@ -11,6 +11,12 @@ public class EscapeMenuManager : MonoBehaviour
     private void Awake()
     {
         CloseMenu();
+        GameObject.FindObjectOfType<GameManager>().GameOverEvent += EscapeMenuManager_GameOverEvent;
+    }
+
+    private void EscapeMenuManager_GameOverEvent(GameManager.GameOverCause obj)
+    {
+        this.enabled = false;
     }
 
     void Update()

@@ -8,6 +8,7 @@ public class MouseHandler : MonoBehaviour
     public MouseState mouseState;
     BuildingPlacer buildingPlacer;
     Island island;
+    GameManager gameManager;
 
     public Texture2D defaultMousePointer;
     public Texture2D placingBuildingPointer;
@@ -21,7 +22,17 @@ public class MouseHandler : MonoBehaviour
         island = GameObject.FindObjectOfType<Island>();
         island.BuildingPlacedEvent += Island_BuildingPlacedEvent;
 
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager.GameOverEvent += GameManager_GameOverEvent;
+
         SetMousePointer(MousePointerStyle.NORMAL);
+    }
+
+    [SerializeField]bool gameOver = false;
+    private void GameManager_GameOverEvent(GameManager.GameOverCause obj)
+    {
+        gameOver = true;
+        SetMousePointer(MousePointerStyle.NORMAL);  //Or do we hide it completely? Nah probably not
     }
 
     private void Island_BuildingPlacedEvent(Building.BuildingType obj)
@@ -43,6 +54,11 @@ public class MouseHandler : MonoBehaviour
 
     void Update()
     {
+        if(gameOver)
+        {
+            return;
+        }
+
         if (EventSystem.current.IsPointerOverGameObject())
         {
             SetMousePointer(MousePointerStyle.NORMAL);

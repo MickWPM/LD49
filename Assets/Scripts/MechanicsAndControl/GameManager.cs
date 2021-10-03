@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         island = GameObject.FindObjectOfType<Island>();
         island.TaskCompleteEvent += Island_TaskCompleteEvent;
         island.BuildingUnderwaterEvent += Island_BuildingUnderwaterEvent;
+        Time.timeScale = 1;
     }
 
     private void Island_BuildingUnderwaterEvent(Building obj)
@@ -86,6 +87,8 @@ public class GameManager : MonoBehaviour
                 StartGame();
             }
         }
+        if (playing == false) return;
+
         if (firstTaskIssued == false) return;
         if (gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.ZEN || gameOptions.GameModeSelected == GameOptionsPersistent.GameMode.HARDCORE_ZEN) return;
 
@@ -116,6 +119,8 @@ public class GameManager : MonoBehaviour
     public void EndGame(GameOverCause cause)
     {
         Debug.Log("END GAME : " + cause);
+        playing = false;
+        GameOverEvent?.Invoke(cause);
     }
 
     private void Island_TaskCompleteEvent()

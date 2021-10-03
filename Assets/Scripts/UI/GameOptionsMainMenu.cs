@@ -20,6 +20,7 @@ public class GameOptionsMainMenu : MonoBehaviour
 
     private void OnEnable()
     {
+        Time.timeScale = 1;
         if (gameOptions == null)
         {
             gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
