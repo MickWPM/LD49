@@ -8,14 +8,37 @@ public class GameManager : MonoBehaviour
     int taskID = -1;
     Island island;
 
+    GameOptionsPersistent gameOptions;
+
     private void Awake()
     {
         island = GameObject.FindObjectOfType<Island>();
         island.TaskCompleteEvent += Island_TaskCompleteEvent;
+        island.BuildingUnderwaterEvent += Island_BuildingUnderwaterEvent;
+    }
+
+    private void Island_BuildingUnderwaterEvent(Building obj)
+    {
+        if(gameOptions == null)
+            gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
+
+        Debug.Log($"Game mode selected = {gameOptions.GameModeSelected}.", gameOptions.gameObject);
+        switch (gameOptions.GameModeSelected)
+        {
+            case GameOptionsPersistent.GameMode.NORMAL:
+                Debug.Log("Normal mode");
+                break;
+            case GameOptionsPersistent.GameMode.HARDCORE:
+                Debug.Log("Game over");
+                break;
+            default:
+                break;
+        }
     }
 
     private void Start()
     {
+        gameOptions = GameObject.FindObjectOfType<GameOptionsPersistent>();
         Invoke("IssueNextTask", 2f);
     }
 

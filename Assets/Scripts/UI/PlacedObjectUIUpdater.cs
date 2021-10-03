@@ -40,10 +40,11 @@ public class PlacedObjectUIUpdater : MonoBehaviour
 
     void UpdateBuildingPlacedUI()
     {
+        int tasksCompleted = gameManager.TasksCompleted < 0 ? 0 : gameManager.TasksCompleted;
         placedBuildingText.text = $"Houses: {island.HouseCount} / {island.HouseCountTarget}\n" +
             $"Lumberyards: {island.LumberyardCount} / {island.LumberyardCountTarget}\n" +
             $"Fishing Huts: {island.FishingHutCount} / {island.FishingHutCountTarget}" +
             $"\nMines: {island.MineCount} / {island.MineCountTarget}\n\n" +
-            $"Total Tasks Complete: {gameManager.TasksCompleted}";
+            $"Total Tasks Complete: { tasksCompleted }";
     }
 }

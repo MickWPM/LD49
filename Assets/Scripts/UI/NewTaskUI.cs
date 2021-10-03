@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class NewTaskUI : MonoBehaviour
 {
+    public GameObject taskGO;
     GameManager gameManager;
     public Image newTaskImage;
     public TMPro.TextMeshProUGUI taskText;
@@ -14,6 +15,7 @@ public class NewTaskUI : MonoBehaviour
         gameManager = GameObject.FindObjectOfType<GameManager>();
         gameManager.TaskIssuedEvent += GameManager_TaskIssuedEvent;
         ResetTaskUI();
+        taskGO.SetActive(false);
     }
 
     Coroutine taskCoroutine;
@@ -31,6 +33,7 @@ public class NewTaskUI : MonoBehaviour
 
     private IEnumerator ShowTaskPopup()
     {
+        taskGO.SetActive(true);
         taskText.text = $"---- NEW TASK ---- \n{currentTask.ToString()}";
         float timer = 0;
         while(timer < 0.5f)

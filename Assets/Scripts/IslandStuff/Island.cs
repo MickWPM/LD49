@@ -86,16 +86,8 @@ public class Island : MonoBehaviour
         AlignIsland();
         CheckBuildings();
         CheckTaskComplete();
-        TickBuildings();
     }
 
-    void TickBuildings()
-    {
-        foreach (var b in buildings)
-        {
-            b.Tick(Time.deltaTime);
-        }
-    }
 
     public event System.Action TaskCompleteEvent;
     void CheckTaskComplete()
@@ -112,6 +104,7 @@ public class Island : MonoBehaviour
         }
     }
 
+    public event System.Action<Building> BuildingUnderwaterEvent;
     void CheckBuildings()
     {
         List<Building> underwaterBuildings = new List<Building>();
@@ -122,6 +115,7 @@ public class Island : MonoBehaviour
             {
                 //underwater
                 underwaterBuildings.Add(b);
+                BuildingUnderwaterEvent?.Invoke(b);
             }
         }
 

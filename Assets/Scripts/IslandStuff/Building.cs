@@ -44,11 +44,6 @@ public class Building : MonoBehaviour
         return signedAngle;
     }
 
-    public void Tick(float deltaTime)
-    {
-
-    }
-
     Resource thisResource;
     public bool setResourceInactiveOnPlacement = true;
     public void PlacedOnResource(Resource r)
