@@ -154,6 +154,7 @@ public class Island : MonoBehaviour
         BuildingRemovedEvent?.Invoke(b.buildingType);
         totalWeight -= b.weight;
         Destroy(b.gameObject);
+        if (buildings.Count == 0) targetRotation = Vector3.zero;
     }
 
     Vector3 targetRotation;

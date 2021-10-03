@@ -67,6 +67,11 @@ public class Building : MonoBehaviour
     public void BuildingUnderwater()
     {
         island.RemoveBuilding(this);
+
+        if (splashClip != null)
+        {
+            audioHelper.PlayClip(splashClip);
+        }
         DestroyBuilding();
     }
 
@@ -75,11 +80,6 @@ public class Building : MonoBehaviour
         if(thisResource != null)
         {
             thisResource.gameObject.SetActive(true);
-        }
-
-        if(splashClip != null)
-        {
-            audioHelper.PlayClip(splashClip);
         }
     }
 
