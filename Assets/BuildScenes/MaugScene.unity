@@ -6109,6 +6109,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Maug
       objectReference: {fileID: 0}
+    - target: {fileID: 1080362567145038385, guid: b9fa2c808ea018b4da87fa337b143e17, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8d2cf7ea8f7aec94d8722654ade77cd7, type: 2}
     - target: {fileID: 4864978980223542903, guid: b9fa2c808ea018b4da87fa337b143e17, type: 3}
       propertyPath: m_LocalScale.x
       value: 2

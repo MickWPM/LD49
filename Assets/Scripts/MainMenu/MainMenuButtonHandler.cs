@@ -20,6 +20,11 @@ public class MainMenuButtonHandler : MonoBehaviour
         Cursor.SetCursor(MainMenuCursor, Vector2.zero, CursorMode.Auto);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
     #region NewGame
     bool showingNewGameButtons = false;
     public void NewGameClicked()
