@@ -71,11 +71,11 @@ public class NewTaskUI : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         newTaskImage.color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(1f);
-        timer += 1;
-        while (timer < 2f)
+        yield return new WaitForSeconds(.5f);
+        timer += .5f;
+        while (timer < 1.5f)
         {
-            newTaskImage.color = new Color(1, 1, 1, 2* (2 - timer));
+            newTaskImage.color = new Color(1, 1, 1, 2* (1.5f - timer));
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
