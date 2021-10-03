@@ -87,6 +87,10 @@ public class MainMenuButtonHandler : MonoBehaviour
     {
         Application.LoadLevel(3);
     }
+    public void PlayShattered()
+    {
+        Application.LoadLevel(4);
+    }
 
     void HideNewGameButtons()
     {

@@ -6,15 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/BuildScenes/EntrySplashScene.unity
+    path: Assets/BuildScenes/0-EntrySplashScene.unity
     guid: 4ca4ffb9b757a874da980fa712537c05
   - enabled: 1
-    path: Assets/BuildScenes/MainMenu.unity
+    path: Assets/BuildScenes/1-MainMenu.unity
     guid: 8910e4162d13ff54e9a9cdcffda8bcde
   - enabled: 1
-    path: Assets/BuildScenes/TestScene.unity
+    path: Assets/BuildScenes/2-TestScene.unity
     guid: 7078bab7f6f4ac34e976ff40fa7b3006
   - enabled: 1
-    path: Assets/BuildScenes/MaugScene.unity
+    path: Assets/BuildScenes/3-MaugScene.unity
     guid: 809d21d6959a3584da93fd55d96bfaa9
+  - enabled: 1
+    path: Assets/BuildScenes/4-ShatteredIsleScene.unity
+    guid: e649163daf1220d4a92ff895376b18e0
   m_configObjects: {}
