@@ -25,6 +25,8 @@ public class GameOptionsPersistent : MonoBehaviour
     public enum GameMode
     {
         NORMAL,
-        HARDCORE
+        HARDCORE,
+        ZEN,
+        HARDCORE_ZEN
     }
 }

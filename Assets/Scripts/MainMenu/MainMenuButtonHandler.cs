@@ -9,11 +9,14 @@ public class MainMenuButtonHandler : MonoBehaviour
     public GameObject OptionsGO;
     public GameObject HowToPlayGO;
     public Texture2D MainMenuCursor;
+    public GameObject popupGO;
+    public TMPro.TextMeshProUGUI popupText;
     private void Awake()
     {
         HideNewGameButtons();
         HideOptionsScreen();
         HideHowToPlay();
+        popupGO.SetActive(false);
         Cursor.SetCursor(MainMenuCursor, Vector2.zero, CursorMode.Auto);
     }
 
@@ -123,4 +126,61 @@ public class MainMenuButtonHandler : MonoBehaviour
 
     #endregion
 
+    #region Popups
+    string NormalModeText = "Normal Mode:\nTasks are given with a timer to complete. If buildings get washed away you need to rebuild before the task completes.";
+    string HardcoreModeText = "Hardcore Mode:\nTasks are given with a timer to complete. If buildings get washed away you lose immediately.";
+    string ZenModeText = "Zen Mode:\nTasks are still given but there are no timers and you are under no obligation to complete them. Enjoy!";
+    string HardcoreZenModeText = "Hardcore Zen:\nZen mode... but if you lose any buildings you lose immediately. For the patient perfectionist.";
+
+    public void HidePopup()
+    {
+        popupGO.SetActive(false);
+    }
+
+    public void ShowNormalPopup()
+    {
+        ShowPopup(GameOptionsPersistent.GameMode.NORMAL);
+    }
+
+    public void ShowHardcorePopup()
+    {
+        ShowPopup(GameOptionsPersistent.GameMode.HARDCORE);
+    }
+
+    public void ShowZenPopup()
+    {
+        ShowPopup(GameOptionsPersistent.GameMode.ZEN);
+    }
+
+    public void ShowHardcoreZenPopup()
+    {
+        ShowPopup(GameOptionsPersistent.GameMode.HARDCORE_ZEN);
+    }
+
+    public void ShowPopup(GameOptionsPersistent.GameMode gameMode)
+    {
+        string s = "";
+        switch (gameMode)
+        {
+            case GameOptionsPersistent.GameMode.NORMAL:
+                s = NormalModeText;
+                break;
+            case GameOptionsPersistent.GameMode.HARDCORE:
+                s = HardcoreModeText;
+                break;
+            case GameOptionsPersistent.GameMode.ZEN:
+                s = ZenModeText;
+                break;
+            case GameOptionsPersistent.GameMode.HARDCORE_ZEN:
+                s = HardcoreZenModeText;
+                break;
+            default:
+                Debug.LogError($"Game mode {gameMode} is not accounted for");
+                return;
+        }
+        popupText.text = s;
+        popupGO.SetActive(true);
+    }
+
+    #endregion
 }

@@ -7,8 +7,10 @@ using UnityEngine.Events;
 
 public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
-    public AnimationClip hoverClip;
     public UnityEvent clickedEvent;
+    public UnityEvent hoverStartEvent;
+    public UnityEvent hoverEndEvent;
+
     Animator animator;
     private void Awake()
     {
@@ -24,11 +26,13 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public void OnPointerEnter(PointerEventData eventData)
     {
         animator.SetBool("Hover", true);
+        hoverStartEvent?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         animator.SetBool("Hover", false);
+        hoverEndEvent?.Invoke();
     }
 
     private void OnEnable()
