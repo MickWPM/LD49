@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ToonyWater
+  m_Shader: {fileID: -6465566751694194690, guid: 5d9afd45d36a6134ebb0f532f51e5f4e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Floats:
+    - Vector1_127FCC27: 5
+    - Vector1_36E84C0B: 20
+    - Vector1_39E3F06D: 0.75
+    - Vector1_503F0FB: 900
+    - Vector1_52D6B74B: 29.5
+    - Vector1_791E8E70: 1
+    - Vector1_93102A79: 100
+    - Vector1_A77BA2A5: 0.7
+    - Vector1_AC38F6FB: 0.04
+    - Vector1_B4380F10: 80
+    - Vector1_EDC6744B: 0.81
+    m_Colors:
+    - Color_502A624E: {r: 1, g: 1, b: 1, a: 0.8}
+  m_BuildTextureStacks: []
