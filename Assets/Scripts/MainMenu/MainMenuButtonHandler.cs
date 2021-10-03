@@ -114,7 +114,7 @@ public class MainMenuButtonHandler : MonoBehaviour
         OptionsGO.SetActive(showingOptions);
     }
 
-    void HideOptionsScreen()
+    public void HideOptionsScreen()
     {
         showingOptions = false;
         OptionsGO.SetActive(false);

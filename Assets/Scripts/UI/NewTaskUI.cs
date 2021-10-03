@@ -10,6 +10,9 @@ public class NewTaskUI : MonoBehaviour
     GameManager gameManager;
     public Image newTaskImage;
     public TMPro.TextMeshProUGUI taskText;
+    bool hideTaskAfterCountdown = false;
+    float taskHideCountdownRemaining;
+
     void Start()
     {
         gameManager = GameObject.FindObjectOfType<GameManager>();
@@ -29,10 +32,35 @@ public class NewTaskUI : MonoBehaviour
         }
         currentTask = newTask;
         StartCoroutine(ShowTaskPopup());
+
+        if(gameManager.GameOptionsPersistent != null)
+        {
+            taskHideCountdownRemaining = gameManager.GameOptionsPersistent.NotificationTimeVisible;
+            hideTaskAfterCountdown = taskHideCountdownRemaining <= 0 ? false : true;
+        } 
     }
 
+    private void Update()
+    {
+        if (hideTaskAfterCountdown == false) return;
+
+        if (taskGO.activeSelf == false) return;
+
+        taskHideCountdownRemaining -= Time.deltaTime;
+        if(taskHideCountdownRemaining < 0)
+        {
+            if(coroutining)
+            {
+                StopCoroutine(taskCoroutine);
+            }
+            taskGO.SetActive(false);
+        }
+    }
+
+    bool coroutining = false;
     private IEnumerator ShowTaskPopup()
     {
+        coroutining = true;
         taskGO.SetActive(true);
         taskText.text = $"---- NEW TASK ---- \n{currentTask.ToString()}";
         float timer = 0;
@@ -52,6 +80,7 @@ public class NewTaskUI : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         newTaskImage.color = new Color(1, 1, 1, 0);
+        coroutining = false;
     }
 
     void ResetTaskUI()

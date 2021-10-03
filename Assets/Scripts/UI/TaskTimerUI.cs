@@ -25,11 +25,11 @@ public class TaskTimerUI : MonoBehaviour
         {
             case GameOptionsPersistent.GameMode.NORMAL:
             case GameOptionsPersistent.GameMode.HARDCORE:
-                showTimer = false;
+                showTimer = true;
                 break;
             case GameOptionsPersistent.GameMode.ZEN:
             case GameOptionsPersistent.GameMode.HARDCORE_ZEN:
-                showTimer = true;
+                showTimer = false;
                 break;
             default:
                 Debug.LogError("Unhandled game mode : " + mode);

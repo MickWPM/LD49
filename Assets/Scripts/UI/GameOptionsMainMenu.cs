@@ -31,12 +31,12 @@ public class GameOptionsMainMenu : MonoBehaviour
 
     public void SetAudioMute()
     {
-        AudioListener.volume = muteToggle.isOn ? 0 : gameOptions.AudioVolume;
+        AudioListener.volume = muteToggle.isOn ? 0 : audioSlider.value;
     }
 
     public void SetVolumeLevel()
     {
-        AudioListener.volume = audioSlider.value;
+        AudioListener.volume = muteToggle.isOn ? 0 : audioSlider.value;
     }
 
     private void OnDisable()

@@ -170,7 +170,7 @@ public class MouseHandler : MonoBehaviour
                 break;
         }
 
-        Cursor.SetCursor(pointerTex, offset, CursorMode.Auto);
+        Cursor.SetCursor(pointerTex, offset, CursorMode.ForceSoftware);
     }
 }
 

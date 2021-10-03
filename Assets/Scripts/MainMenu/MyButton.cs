@@ -11,10 +11,14 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public UnityEvent hoverStartEvent;
     public UnityEvent hoverEndEvent;
 
+    public bool DoHoverAnim = true;
+    public bool DoAppearAnim = true;
+
     Animator animator;
     private void Awake()
     {
         animator = gameObject.GetComponent<Animator>();
+        animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         ShowButton();
     }
 
@@ -25,14 +29,18 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        animator.SetBool("Hover", true);
         hoverStartEvent?.Invoke();
+        if (DoHoverAnim == false) return;
+        if (animator != null)
+            animator.SetBool("Hover", true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        animator.SetBool("Hover", false);
         hoverEndEvent?.Invoke();
+        if (DoHoverAnim == false) return;
+        if (animator != null)
+            animator.SetBool("Hover", false);
     }
 
     private void OnEnable()
@@ -44,6 +52,8 @@ public class MyButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     void ShowButton()
     {
-        animator.SetTrigger("Appear");
+        if (DoAppearAnim == false) return;
+        if (animator != null)
+            animator.SetTrigger("Appear");
     }
 }

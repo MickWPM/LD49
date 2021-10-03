@@ -55,6 +55,24 @@ public class GameManager : MonoBehaviour
         GameStartedEvent?.Invoke(CurrentGameMode);
     }
 
+    public GameOptionsPersistent GameOptionsPersistent
+    {
+        get
+        {
+            return gameOptions;
+        }
+    }
+
+    public void QuitToMenu()
+    {
+        Application.LoadLevel(0);
+    }
+
+    public void RetireWithDignity()
+    {
+        EndGame(GameOverCause.RETIRED);
+    }
+
     private void Update()
     {
         if (gameOptions == null)
