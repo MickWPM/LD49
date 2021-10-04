@@ -24,6 +24,7 @@ public class GameOptionsPersistent : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+    [System.Serializable]
     public enum GameMode
     {
         NORMAL,
