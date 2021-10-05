@@ -10,6 +10,7 @@ public class GameOptionsMainMenu : MonoBehaviour
     public Slider mouseScrollSlider;
     public Slider audioSlider;
     GameOptionsPersistent gameOptions;
+    public Toggle disableOnlineScoreToggle;
 
     private void Update()
     {
@@ -29,6 +30,7 @@ public class GameOptionsMainMenu : MonoBehaviour
         audioSlider.value = gameOptions.AudioVolume;
         muteToggle.isOn = gameOptions.MuteAudio;
         mouseScrollSlider.value = gameOptions.MouseScrollZoomSpeed;
+        disableOnlineScoreToggle.isOn = gameOptions.DisableOnlineScores;
     }
 
     public void SetAudioMute()
@@ -46,6 +48,11 @@ public class GameOptionsMainMenu : MonoBehaviour
         gameOptions.MouseScrollZoomSpeed = mouseScrollSlider.value;
     }
 
+    public void SetDisableOnlineScores()
+    {
+        gameOptions.DisableOnlineScores = disableOnlineScoreToggle.isOn;
+    }
+
     private void OnDisable()
     {
         float newTime;
@@ -60,5 +67,6 @@ public class GameOptionsMainMenu : MonoBehaviour
         gameOptions.AudioVolume = audioSlider.value;
         gameOptions.MuteAudio = muteToggle.isOn;
         gameOptions.MouseScrollZoomSpeed = mouseScrollSlider.value;
+        gameOptions.DisableOnlineScores = disableOnlineScoreToggle.isOn;
     }
 }

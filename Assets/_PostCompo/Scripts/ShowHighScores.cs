@@ -40,8 +40,11 @@ public class ShowHighScores : MonoBehaviour
         highScoresUI.SetActive(false);
     }
 
+    bool disableOnlineScores = false;
     public void ShowHighScoresUI()
     {
+        GameOptionsPersistent gameOptionsPersistent = GameObject.FindObjectOfType<GameOptionsPersistent>();
+        if (gameOptionsPersistent != null) disableOnlineScores = gameOptionsPersistent.DisableOnlineScores;
         Debug.Log("Show high scores ui");
         highScoresUI.SetActive(true);
         clickedIslandButton = starterIslandButton;
@@ -116,7 +119,6 @@ public class ShowHighScores : MonoBehaviour
             currentIslandButton = clickedIslandButton;
             currentIslandButton.DoClickedEffect();
         }
-        Debug.Log("get scores");
 
         //Get the high scores for map and game
         GetHighScoresForMapAndGame(currentMap, currentGameMode);
@@ -132,6 +134,13 @@ public class ShowHighScores : MonoBehaviour
         string appid = HighScoreSetup.AppIds[islandGameKey];
         string appsecret = HighScoreSetup.AppSecrets[islandGameKey];
         string playerID = PlayerPrefs.GetString("Guid");
+
+        if(disableOnlineScores)
+        {
+            FailedToLoadHighScores();
+            return;
+        }
+
         HighscoreService highscoreService = new HighscoreService(appid, appsecret, HighScoreSetup.API_URL);
 
         Debug.LogWarning("Move this to on initial load of scene? Of high scores menu? This is slow but will always give the latest scores");
@@ -255,7 +264,9 @@ public class ShowHighScores : MonoBehaviour
     void FailedToLoadHighScores()
     {
         loadingHighScoresGO.SetActive(false);
-        failedToLoadHighScoresGO.SetActive(true);
+        if (disableOnlineScores == false)
+            failedToLoadHighScoresGO.SetActive(true);
+
         SpawnPlayerHighScoreEntry();
     }
 

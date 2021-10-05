@@ -15,6 +15,8 @@ public class GameOptionsPersistent : MonoBehaviour
 
     public float MouseScrollZoomSpeed = 10f;
 
+    public bool DisableOnlineScores = false;
+
     private void Awake()
     {
         GameOptionsPersistent[] existingInstance = GameObject.FindObjectsOfType<GameOptionsPersistent>();

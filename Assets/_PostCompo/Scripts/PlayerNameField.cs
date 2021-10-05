@@ -21,7 +21,6 @@ public class PlayerNameField : MonoBehaviour
             PlayerPrefs.SetString("PlayerName", "NoName");
         }
         PlayerPrefs.Save();
-        Debug.Log("Name set to " + PlayerPrefs.GetString("PlayerName", "error - somehow not set"));
     }
 
     private void OnEnable()

@@ -132,18 +132,19 @@ public class GameManager : MonoBehaviour
             string playerNamePref = HighScoreSetup.GetGameModeIslandIDForHighScoreNAMEPlayerPrefs(islandGameKey);
             PlayerPrefs.SetInt(gameID, TasksCompleted);
             PlayerPrefs.SetString(playerNamePref, PlayerPrefs.GetString("PlayerName"));
+            if (GameOptionsPersistent.DisableOnlineScores == false)
+            {
+                //SEND HIGH SCORES TO SERVER
+                string appid = HighScoreSetup.AppIds[islandGameKey];
+                string appsecret = HighScoreSetup.AppSecrets[islandGameKey];
+                HighscoreService highscoreService = new HighscoreService(appid, appsecret, HighScoreSetup.API_URL);
 
-            //SEND HIGH SCORES TO SERVER
-            string appid = HighScoreSetup.AppIds[islandGameKey];
-            string appsecret = HighScoreSetup.AppSecrets[islandGameKey];
-            HighscoreService highscoreService = new HighscoreService(appid, appsecret, HighScoreSetup.API_URL);
-
-            Debug.Log("Trying to submit");
-            StartCoroutine(
-                highscoreService.SubmitScore(PlayerPrefs.GetString("Guid"), PlayerPrefs.GetString("PlayerName"), TasksCompleted,
-                OnHighScoreSuccess, OnHighScoreFailure)
-                );
-
+                Debug.Log("Trying to submit");
+                StartCoroutine(
+                    highscoreService.SubmitScore(PlayerPrefs.GetString("Guid"), PlayerPrefs.GetString("PlayerName"), TasksCompleted,
+                    OnHighScoreSuccess, OnHighScoreFailure)
+                    );
+            }
         }
         //---- END ADDED AFTER COMPO -------
         GameOverEvent?.Invoke(cause);
