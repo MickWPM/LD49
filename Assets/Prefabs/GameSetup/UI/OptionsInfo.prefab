@@ -92,7 +92,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickedEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MainMenuButtonHandler, Assembly-CSharp
+        m_MethodName: HideOptionsScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hoverStartEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -290,8 +302,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -338.84}
-  m_SizeDelta: {x: 0, y: -677.6784}
+  m_AnchoredPosition: {x: 0, y: -281}
+  m_SizeDelta: {x: 0, y: -561.9166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6101770883235961536
 CanvasRenderer:
@@ -579,8 +591,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 75.2}
-  m_SizeDelta: {x: 0, y: -704.4729}
+  m_AnchoredPosition: {x: 0, y: 27.304}
+  m_SizeDelta: {x: 0, y: -540.8052}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5369593918764130428
 CanvasRenderer:
@@ -1129,7 +1141,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.25
+  m_fontSize: 52.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1775,8 +1787,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -57.7}
-  m_SizeDelta: {x: 0, y: -722.77026}
+  m_AnchoredPosition: {x: 0, y: -85}
+  m_SizeDelta: {x: 0, y: -558.8176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8988722368595069074
 CanvasRenderer:
@@ -1937,8 +1949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 360.8}
-  m_SizeDelta: {x: 0, y: -721.74493}
+  m_AnchoredPosition: {x: -0.000030517578, y: 284.72}
+  m_SizeDelta: {x: 0, y: -569.5872}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8988722368952764614
 CanvasRenderer:
@@ -1995,7 +2007,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 99
+  m_fontSize: 92.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2555,8 +2567,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -187}
-  m_SizeDelta: {x: 0, y: -711.7571}
+  m_AnchoredPosition: {x: 0, y: -188.04}
+  m_SizeDelta: {x: 0, y: -576.4005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8988722369390678077
 CanvasRenderer:
@@ -2863,8 +2875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -75.3, y: 6.7}
-  m_SizeDelta: {x: 127.572815, y: -62.152283}
+  m_AnchoredPosition: {x: -83.5, y: 6.7}
+  m_SizeDelta: {x: 101.40637, y: -62.152283}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &8988722369614248959
 CanvasRenderer:
@@ -3037,8 +3049,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 231.67}
-  m_SizeDelta: {x: 0, y: -675.6895}
+  m_AnchoredPosition: {x: 0, y: 145.1}
+  m_SizeDelta: {x: 0, y: -547.83716}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8988722369615098584
 CanvasRenderer:
@@ -3172,7 +3184,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.45
+  m_fontSize: 56.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

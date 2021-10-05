@@ -116,8 +116,10 @@ public class GameManager : MonoBehaviour
     }
 
     public event System.Action<GameOverCause> GameOverEvent;
+    public TMPro.TextMeshProUGUI scoreSubmittingStatusText;
     public void EndGame(GameOverCause cause)
     {
+        scoreSubmittingStatusText.text = "";
         Debug.Log("END GAME : " + cause);
         playing = false;
 
@@ -134,6 +136,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetString(playerNamePref, PlayerPrefs.GetString("PlayerName"));
             if (GameOptionsPersistent.DisableOnlineScores == false)
             {
+                scoreSubmittingStatusText.text = "Sending high score to server, please wait.";
                 //SEND HIGH SCORES TO SERVER
                 string appid = HighScoreSetup.AppIds[islandGameKey];
                 string appsecret = HighScoreSetup.AppSecrets[islandGameKey];
@@ -153,12 +156,12 @@ public class GameManager : MonoBehaviour
     //--- ADDED AFTER COMPO FOR HIGH SCORES ----
     void OnHighScoreSuccess()
     {
-        Debug.Log("Submitted high score");
+        scoreSubmittingStatusText.text = "Submitted high score to server";
     }
 
     void OnHighScoreFailure(UnityEngine.Networking.UnityWebRequest.Result result)
     {
-        Debug.Log("Failed to submit high score " + result.ToString());
+        scoreSubmittingStatusText.text = "Couldn't submit high score to server";
     }
     //---- END ADDED AFTER COMPO -------
 

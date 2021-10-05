@@ -183,9 +183,9 @@ public class ShowHighScores : MonoBehaviour
             }
 
         }
-        if(playerScoreSpawned == false)
+        if(playerScoreSpawned == false && playerScoreFromResults.score > 0)
         {
-            SpawnHighScoreEntry(highscoreResults.currentPlayerScore.placement + ". " + highscoreResults.currentPlayerScore.playerName,
+            SpawnHighScoreEntry(playerScoreFromResults.placement + ". " + playerScoreFromResults.playerName,
                 highscoreResults.currentPlayerScore.score.ToString(), true);
         }
 
@@ -203,6 +203,7 @@ public class ShowHighScores : MonoBehaviour
         HighScoreVisualEntry h = Instantiate(player ? playerHighScoreEntry : highScoreEntry);
         h.SetHighScore(playerName, score);
         h.transform.SetParent(HighScoreBodyTransform);
+        h.transform.localScale = Vector3.one;
     }
 
     public void SpawnHighScoreEntry(HighScore score, bool player = false)
@@ -210,6 +211,7 @@ public class ShowHighScores : MonoBehaviour
         HighScoreVisualEntry h = Instantiate(player ? playerHighScoreEntry : highScoreEntry);
         h.SetHighScore(score);
         h.transform.SetParent(HighScoreBodyTransform);
+        h.transform.localScale = Vector3.one;
     }
 
 
@@ -227,14 +229,6 @@ public class ShowHighScores : MonoBehaviour
         loadingHighScoresGO.SetActive(true);
     }
 
-    bool TryGetHighScoreFromStrings(string playername, string playerscore, out HighScore highScore)
-    {
-        highScore = new HighScore();
-        highScore.playerName = playername;
-        bool valid = (int.TryParse(playerscore, out highScore.playerScore));
-
-        return valid;
-    }
 
     void SpawnPlayerHighScoreEntry()
     {
