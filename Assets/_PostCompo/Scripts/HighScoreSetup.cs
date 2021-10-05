@@ -159,29 +159,29 @@ public class HighScoreSetup : MonoBehaviour
 
         //Maug
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.NORMAL, mapType = ShowHighScores.MapType.MAUG }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.NORMAL, mapType = ShowHighScores.MapType.MAUG }, MaugNormalSecret.text);
 
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE, mapType = ShowHighScores.MapType.MAUG }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE, mapType = ShowHighScores.MapType.MAUG }, MaugHardcoreSecret.text);
 
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.ZEN, mapType = ShowHighScores.MapType.MAUG }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.ZEN, mapType = ShowHighScores.MapType.MAUG }, MaugZenSecret.text);
 
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE_ZEN, mapType = ShowHighScores.MapType.MAUG }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE_ZEN, mapType = ShowHighScores.MapType.MAUG }, MaugHardcoreZenSecret.text);
 
         //Shattered
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.NORMAL, mapType = ShowHighScores.MapType.SHATTERED }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.NORMAL, mapType = ShowHighScores.MapType.SHATTERED }, shatteredNormalSecret.text);
 
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE, mapType = ShowHighScores.MapType.SHATTERED }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE, mapType = ShowHighScores.MapType.SHATTERED }, shatteredHardcoreSecret.text);
 
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.ZEN, mapType = ShowHighScores.MapType.SHATTERED }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.ZEN, mapType = ShowHighScores.MapType.SHATTERED }, shatteredZenSecret.text);
 
         AppSecrets.Add(
-            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE_ZEN, mapType = ShowHighScores.MapType.SHATTERED }, "");
+            new IslandGameKey() { gameMode = GameOptionsPersistent.GameMode.HARDCORE_ZEN, mapType = ShowHighScores.MapType.SHATTERED }, shatteredHardcoreZenSecret.text);
         #endregion
 
     }
