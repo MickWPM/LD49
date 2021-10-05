@@ -302,10 +302,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5727cfdee3cb29f4a9dc46805d0c7d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  starterNormalSecret: {fileID: 4900000, guid: aa9426d16e3a0de43b54a9722892044e, type: 3}
-  starterHardcoreSecret: {fileID: 4900000, guid: 01d77cf4a027b9e4d9caaa80f956d134, type: 3}
-  starterZenSecret: {fileID: 4900000, guid: eaf61bdb02c203b409e491a88db2de45, type: 3}
-  starterHardcoreZenSecret: {fileID: 4900000, guid: 980fffcd46733db41aa4d9520e4093f7, type: 3}
+  starterNormalSecret: {fileID: 4900000, guid: c78bc0b416f45f54db76ebb910a63390, type: 3}
+  starterHardcoreSecret: {fileID: 4900000, guid: c46f45da8819f414ba6971faa9ee8f54, type: 3}
+  starterZenSecret: {fileID: 4900000, guid: dc00d944331d578419e03cf453dc75b4, type: 3}
+  starterHardcoreZenSecret: {fileID: 4900000, guid: 606bb8290b7a1d54f8bdaebf5586735a, type: 3}
+  MaugNormalSecret: {fileID: 4900000, guid: 50159f3bcf7c6af49a186fd6e3e50ff6, type: 3}
+  MaugHardcoreSecret: {fileID: 4900000, guid: a4bee0b113894574bbefda4eaed8d42b, type: 3}
+  MaugZenSecret: {fileID: 4900000, guid: e0c3cf98126642343abdc59b7b0f970c, type: 3}
+  MaugHardcoreZenSecret: {fileID: 4900000, guid: 6e20bac6fcc9d0847adfacd0ba5575b1, type: 3}
+  shatteredNormalSecret: {fileID: 4900000, guid: ce0dbaba29a66e24fab1000aea7e4fa9, type: 3}
+  shatteredHardcoreSecret: {fileID: 4900000, guid: 79acbd9394ee3cf41ae32f82499a2297, type: 3}
+  shatteredZenSecret: {fileID: 4900000, guid: c31cd7dff66029b4caa487a03cc55fed, type: 3}
+  shatteredHardcoreZenSecret: {fileID: 4900000, guid: c31cd7dff66029b4caa487a03cc55fed, type: 3}
 --- !u!4 &631813251
 Transform:
   m_ObjectHideFlags: 0

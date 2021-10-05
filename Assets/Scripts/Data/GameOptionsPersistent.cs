@@ -6,6 +6,7 @@ public class GameOptionsPersistent : MonoBehaviour
 {
     public GameMode GameModeSelected;
 
+
     public float NotificationTimeVisible = 10;
 
     public bool MuteAudio = false;
@@ -32,4 +33,8 @@ public class GameOptionsPersistent : MonoBehaviour
         ZEN,
         HARDCORE_ZEN
     }
+
+    //--- ADDED AFTER COMPO FOR HIGH SCORES ----
+    public ShowHighScores.MapType IslandSelected;
+    //---- END ADDED AFTER COMPO -------
 }

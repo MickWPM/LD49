@@ -120,8 +120,47 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("END GAME : " + cause);
         playing = false;
+
+        //--- ADDED AFTER COMPO FOR HIGH SCORES ----
+        HighScoreSetup.IslandGameKey islandGameKey = new HighScoreSetup.IslandGameKey();
+        islandGameKey.gameMode = gameOptions.GameModeSelected;
+        islandGameKey.mapType = gameOptions.IslandSelected;
+        string gameID = HighScoreSetup.GetGameModeIslandIDForHighScorePlayerPrefs(islandGameKey);
+        int prevBest = PlayerPrefs.GetInt(gameID, -1);
+        if(TasksCompleted > prevBest)
+        {
+            string playerNamePref = HighScoreSetup.GetGameModeIslandIDForHighScoreNAMEPlayerPrefs(islandGameKey);
+            PlayerPrefs.SetInt(gameID, TasksCompleted);
+            PlayerPrefs.SetString(playerNamePref, PlayerPrefs.GetString("PlayerName"));
+
+            //SEND HIGH SCORES TO SERVER
+            string appid = HighScoreSetup.AppIds[islandGameKey];
+            string appsecret = HighScoreSetup.AppSecrets[islandGameKey];
+            HighscoreService highscoreService = new HighscoreService(appid, appsecret, HighScoreSetup.API_URL);
+
+            Debug.Log("Trying to submit");
+            StartCoroutine(
+                highscoreService.SubmitScore(PlayerPrefs.GetString("Guid"), PlayerPrefs.GetString("PlayerName"), TasksCompleted,
+                OnHighScoreSuccess, OnHighScoreFailure)
+                );
+
+        }
+        //---- END ADDED AFTER COMPO -------
         GameOverEvent?.Invoke(cause);
     }
+
+    //--- ADDED AFTER COMPO FOR HIGH SCORES ----
+    void OnHighScoreSuccess()
+    {
+        Debug.Log("Submitted high score");
+    }
+
+    void OnHighScoreFailure(UnityEngine.Networking.UnityWebRequest.Result result)
+    {
+        Debug.Log("Failed to submit high score " + result.ToString());
+    }
+    //---- END ADDED AFTER COMPO -------
+
 
     private void Island_TaskCompleteEvent()
     {

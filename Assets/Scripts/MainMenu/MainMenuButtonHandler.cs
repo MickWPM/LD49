@@ -101,15 +101,24 @@ public class MainMenuButtonHandler : MonoBehaviour
 
     public void PlayTestMap()
     {
+        //--- ADDED AFTER COMPO FOR HIGH SCORES ----
+        GameObject.FindObjectOfType<GameOptionsPersistent>().IslandSelected = ShowHighScores.MapType.STARTER; 
+        //---- END ADDED AFTER COMPO -------
         Application.LoadLevel(2);
     }
 
     public void PlayMaug()
     {
+        //--- ADDED AFTER COMPO FOR HIGH SCORES ----
+        GameObject.FindObjectOfType<GameOptionsPersistent>().IslandSelected = ShowHighScores.MapType.MAUG;
+        //---- END ADDED AFTER COMPO -------
         Application.LoadLevel(3);
     }
     public void PlayShattered()
     {
+        //--- ADDED AFTER COMPO FOR HIGH SCORES ----
+        GameObject.FindObjectOfType<GameOptionsPersistent>().IslandSelected = ShowHighScores.MapType.SHATTERED;
+        //---- END ADDED AFTER COMPO -------
         Application.LoadLevel(4);
     }
 
